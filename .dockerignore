@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Environment & secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Rust
+target
+
+# OS / Editor
+.DS_Store
+.vscode
+.idea
+
+# Logs
+*.log
+
+# Docker
+Dockerfile
+docker-compose*.yml
