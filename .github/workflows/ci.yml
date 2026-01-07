@@ -1,0 +1,24 @@
+name: CI - Build Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build frontend & backend images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: |
+          docker build -t spyder-backend ./Backend
+
+      - name: Build frontend image
+        run: |
+          docker build -t spyder-frontend ./Frontend
+
