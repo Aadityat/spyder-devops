@@ -9,14 +9,14 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   backend:
-    image: spyder-backend:latest
+    image: ghcr.io/aadityat/spyder-backend:latest
     depends_on:
       - db
     env_file:
       - .env
 
   frontend:
-    image: spyder-frontend:latest
+    image: ghcr.io/aadityat/spyder-frontend:latest
     depends_on:
       - backend
 
