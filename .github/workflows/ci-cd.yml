@@ -51,7 +51,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
-
             cd /home/ubuntu
 
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u aadityat --password-stdin
@@ -59,4 +58,5 @@ jobs:
             docker pull ghcr.io/aadityat/spyder-backend:latest
             docker pull ghcr.io/aadityat/spyder-frontend:latest
 
-            docker-compose -f docker-compose.prod.yml up -d
+            docker-compose -f docker-compose.prod.yml down --remove-orphans
+            docker-compose -f docker-compose.prod.yml up -d --force-recreate
