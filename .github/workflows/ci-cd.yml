@@ -58,5 +58,4 @@ jobs:
             docker pull ghcr.io/aadityat/spyder-backend:latest
             docker pull ghcr.io/aadityat/spyder-frontend:latest
 
-            docker-compose -f docker-compose.prod.yml down --remove-orphans
-            docker-compose -f docker-compose.prod.yml up -d --force-recreate
+            docker compose -f docker-compose.prod.yml up -d
