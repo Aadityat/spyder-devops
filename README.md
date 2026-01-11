@@ -40,7 +40,8 @@ The project focuses on <b>CI/CD automation</b>, <b>container-based architecture<
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml     # GitHub Actions pipeline
-├── docker-compose.yml
+├── docker-compose.local.yml
+├── docker-compose.prod.yml
 ├── .dockerignore
 ├── .gitignore
 └── README.md
