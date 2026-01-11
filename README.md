@@ -7,7 +7,7 @@
 </p>
 <p>
 The project focuses on <b>CI/CD automation</b>, <b>container-based architecture</b>, and
-<b>cloud deployment</b> with a clean, reproducible setup suitable for real-world DevOps workflows.
+<b>cloud deployment</b> using a clean and reproducible workflow.
 </p>
 
 <hr>
@@ -32,18 +32,16 @@ The project focuses on <b>CI/CD automation</b>, <b>container-based architecture<
 <pre>
 .
 ├── Frontend/             # React frontend service
-│   ├── Dockerfile
-│   └── .dockerignore
-├── Backend/              # Node.js backend API
-│   ├── Dockerfile
-│   └── .dockerignore
-├── nginx/                # Reverse proxy layer
-│   ├── nginx.conf
 │   └── Dockerfile
+├── Backend/              # Node.js backend API
+│   └── Dockerfile
+├── nginx/                # Reverse proxy layer
+│   └── nginx.conf
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml     # GitHub Actions pipeline
 ├── docker-compose.yml
+├── .dockerignore
 ├── .gitignore
 └── README.md
 </pre>
@@ -65,9 +63,9 @@ The project focuses on <b>CI/CD automation</b>, <b>container-based architecture<
 
 <h2>🔁 CI/CD Pipeline</h2>
 <ul>
-  <li>Fully automated using <b>GitHub Actions</b></li>
+  <li>Implemented using <b>GitHub Actions</b></li>
   <li>Handles source code checkout, Docker image build, and push to GHCR</li>
-  <li>Ensures consistent and repeatable deployments without manual intervention</li>
+  <li>Provides automated and repeatable deployments</li>
 </ul>
 
 <hr>
@@ -76,7 +74,7 @@ The project focuses on <b>CI/CD automation</b>, <b>container-based architecture<
 <ul>
   <li>Each service runs in its own container</li>
   <li>Docker Compose manages multi-container orchestration and networking</li>
-  <li>Ensures identical behavior across development and production environments</li>
+  <li>Ensures consistent behavior across environments</li>
 </ul>
 
 <hr>
@@ -88,7 +86,7 @@ Nginx acts as a <b>reverse proxy</b> and single entry point for the application.
 <ul>
   <li>Routes <code>/</code> requests to the frontend service</li>
   <li>Routes <code>/api</code> requests to the backend service</li>
-  <li>Keeps frontend and backend decoupled</li>
+  <li>Decouples frontend and backend services</li>
   <li>Improves maintainability and scalability</li>
 </ul>
 
@@ -104,7 +102,8 @@ Nginx acts as a <b>reverse proxy</b> and single entry point for the application.
 
 <h3>.dockerignore</h3>
 <ul>
-  <li>Excludes local and unused files from Docker builds</li>
+  <li>Defined at the repository root</li>
+  <li>Excludes unnecessary files from Docker build context</li>
   <li>Improves build speed and reduces image size</li>
 </ul>
 
@@ -112,9 +111,9 @@ Nginx acts as a <b>reverse proxy</b> and single entry point for the application.
 
 <h2>🔐 Versioning &amp; Rollback (Brief)</h2>
 <ul>
-  <li>Docker images are tagged during the CI pipeline using commit-based or version-based tags</li>
-  <li>Older images are retained in GHCR</li>
-  <li>An earlier image can be redeployed using Docker Compose if needed</li>
+  <li>Docker images are tagged during the CI pipeline</li>
+  <li>Once pulled, images remain available on the EC2 instance</li>
+  <li>A previous image can be redeployed by restarting containers using Docker Compose</li>
 </ul>
 
 <hr>
@@ -123,7 +122,7 @@ Nginx acts as a <b>reverse proxy</b> and single entry point for the application.
 <ul>
   <li>Application is deployed on <b>AWS EC2</b></li>
   <li>Docker and Docker Compose are used for execution</li>
-  <li>Images are pulled directly from GHCR</li>
+  <li>Images are pulled from GHCR during deployment</li>
   <li>No manual code transfer to the server</li>
 </ul>
 
@@ -135,7 +134,7 @@ Nginx acts as a <b>reverse proxy</b> and single entry point for the application.
   <li>Containerized application architecture</li>
   <li>Reverse proxy-based routing</li>
   <li>Cloud deployment using Docker</li>
-  <li>Basic versioning and rollback awareness</li>
+  <li>Basic rollback awareness</li>
 </ul>
 
 <hr>
@@ -148,8 +147,3 @@ MCA – NIT Trichy
 </p>
 
 <hr>
-
-<h2>📄 License</h2>
-<p>
-This project is created for <b>educational and evaluation purposes</b>.
-</p>
