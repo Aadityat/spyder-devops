@@ -12,6 +12,7 @@ permissions:
 env:
   REGISTRY: ghcr.io
   IMAGE_OWNER: aadityat
+  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   build-and-deploy:
@@ -34,13 +35,25 @@ jobs:
       - name: Build & Push Backend Image
         run: |
           docker build -t $REGISTRY/$IMAGE_OWNER/spyder-backend:latest ./Backend
+
+          docker tag \
+            $REGISTRY/$IMAGE_OWNER/spyder-backend:latest \
+            $REGISTRY/$IMAGE_OWNER/spyder-backend:$IMAGE_TAG
+
           docker push $REGISTRY/$IMAGE_OWNER/spyder-backend:latest
+          docker push $REGISTRY/$IMAGE_OWNER/spyder-backend:$IMAGE_TAG
 
       # 4️⃣ Build & push Frontend image
       - name: Build & Push Frontend Image
         run: |
           docker build -t $REGISTRY/$IMAGE_OWNER/spyder-frontend:latest ./Frontend
+
+          docker tag \
+            $REGISTRY/$IMAGE_OWNER/spyder-frontend:latest \
+            $REGISTRY/$IMAGE_OWNER/spyder-frontend:$IMAGE_TAG
+
           docker push $REGISTRY/$IMAGE_OWNER/spyder-frontend:latest
+          docker push $REGISTRY/$IMAGE_OWNER/spyder-frontend:$IMAGE_TAG
 
       # 5️⃣ Deploy to EC2 (CD)
       - name: Deploy to EC2
